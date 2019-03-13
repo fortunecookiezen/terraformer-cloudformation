@@ -1,0 +1,94 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "S3 Bucket to hold Terraform State. Run this template first, then run the Terraform files"
+
+Parameters:
+  ASI:
+    Type: String
+    MinLength: 3
+    MaxLength: 4
+    Description: "asi - must be lower-case, limit 4 characters"
+    AllowedPattern: "[a-z]*"
+  Environment:
+    Type: String
+    MinLength: 3
+    MaxLength: 7
+    Description: "environment (nonprod|dev|itg|cat|prod) - must be lower-case, limit 7 characters"
+    AllowedPattern: "[a-z]*"
+  Owner:
+    Type: String
+    Description: "email address of the the Owner of this stack"
+    Default: "admin@root.com"
+    AllowedPattern: "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Environment Configuration"
+        Parameters:
+        - ASI
+        - Environment
+        - Owner
+
+Resources:
+
+  TerraformStateBucket:
+    DeletionPolicy: Retain
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Join
+      - '-'
+      - -  !Ref ASI
+        -  !Ref Environment
+        -  !Ref 'AWS::Region'
+        -  tfstate
+      AccessControl: Private
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        -
+          Key: "Name"
+          Value: "Terraform Remote State Bucket"
+        -
+          Key: "Owner"
+          Value: !Ref Owner
+        -
+          Key: "Environment"
+          Value: !Ref Environment
+
+  TerraformLockTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: LockID
+          AttributeType: S
+      KeySchema:
+        - AttributeName: LockID
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      TableName: !Join ["-", [!Ref ASI, !Ref Environment, !Ref 'AWS::Region', "terraformlocktable"]]
+      Tags:
+        -
+          Key: "Name"
+          Value: "Terraform Remote Lock Table"
+        -
+          Key: "Owner"
+          Value: !Ref Owner
+        -
+          Key: "Environment"
+          Value: !Ref Environment
+
+Outputs:
+
+  tfstatebucket:
+    Description: Terraform State Bucket
+    Value: !GetAtt TerraformStateBucket.DomainName
+    Export: # added to export
+      Name: tfstatebucketurl
