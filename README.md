@@ -6,7 +6,7 @@ Probably a whackjob idea, but using terraform to orchestrate things in a multipl
 
 ## The Big Idea
 
-Use [terraform]:(<http://terraform.io>) to perform complex orchestration and processing across multiple accounts.
+Use [terraform](http://terraform.io) to perform complex orchestration and processing across multiple accounts.
 
 Seriously, as a recovering Enterprise Architect, this is a significant anti-pattern: the use of multiple paradigms to manage similar resources with no clear domain boundaries.  *JUST SAY NO TO THIS SHIT*
 
