@@ -2,7 +2,7 @@ output "vpc_ids" {
   value = "${data.aws_vpcs.vpcs.ids}"
 }
 
-output "vpc_zero" {
+output "vpc_0" {
   value = "${data.aws_vpcs.vpcs.0.ids}"
 }
 
