@@ -6,9 +6,9 @@ Probably a whackjob idea, but using terraform to orchestrate things in a multipl
 
 ## The Big Idea
 
-Use [terraform](http://terraform.io) to perform complex orchestration and processing across multiple accounts.
+Use [terraform](https://terraform.io) to perform complex orchestration and processing across multiple [aws](https://aws.amazon.com) accounts. Terraform has the ability to import values from CloudFormation, and the ability to invoke additional provisioners (including local and remote-exec) as needed. Which gets me thinking about all sorts of possibilities...
 
-Seriously, as a recovering Enterprise Architect, this is a significant anti-pattern: the use of multiple paradigms to manage similar resources with no clear domain boundaries.  *JUST SAY NO TO THIS SHIT*
+But seriously, as a recovering Enterprise Architect, this is a significant anti-pattern: the use of multiple paradigms to manage similar resources with no clear domain boundaries.  *JUST SAY NO TO THIS SHIT*
 
 * start-here/tfstate.yaml - cloudformation to create terraform state s3 bucket and dynamodb lock table
 * templates/ - cloudformation templates
