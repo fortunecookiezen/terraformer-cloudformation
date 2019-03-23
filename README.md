@@ -8,6 +8,8 @@ Probably a whackjob idea, but using terraform to orchestrate things in a multipl
 
 Use [terraform](https://terraform.io) to perform complex orchestration and processing across multiple [aws](https://aws.amazon.com) accounts. Terraform has the ability to import values from CloudFormation, and the ability to invoke additional provisioners (including local and remote-exec) as needed. Which gets me thinking about all sorts of possibilities...
 
+Possibilities like starting with nothing other than some aws account credentials and a repo to spin up an entire multiple account transit vpc architecture using a transit gateway, and doing it all with a single script.
+
 But seriously, as a recovering Enterprise Architect, this is a significant anti-pattern: the use of multiple paradigms to manage similar resources with no clear domain boundaries.  *JUST SAY NO TO THIS SHIT*
 
 ## Contents
