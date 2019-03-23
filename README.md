@@ -14,15 +14,25 @@ But seriously, as a recovering Enterprise Architect, this is a significant anti-
 
 ## Contents
 
+* start-here/bootstrap.sh - bootstrap script with instructions
 * start-here/tfstate.yaml - cloudformation to create terraform state s3 bucket and dynamodb lock table
-* templates/ - cloudformation templates
+* templates/cloudformationNotifications.yaml (creates notification arns)
 * terraform/data.tf (examples of importing existing environment data)
-* terraform/main.tf (creates a security group)
+* terraform/notifications.tf (applies the cloudformationNotifications.yaml template)
+* terraform/main.tf
 * terraform/modules
-* terraform/outputs.tf
+* terraform/output.tf
+* terraform/securitygroup.tf (creates a security group using the aws_ipranges_json data source)
 * terraform/variables.tf
+* terraform/terraform.tfvars.example
 
 Seriously, I can think of a million things wrong with this idea:
 
 * It needs a compute resource to execute it: ec2 or Cloud 9 or *god forbid* a developer's laptop.
 that makes this inherently insecure. Gain access to that resource, and you own *all* the accounts.
+
+## To DO
+
+* Create an example of exporting and importing data from a local exec or something like that
+* Create an example of running something locally inside the execution environment
+* Create a bootstrap script that will setup the initial environment
