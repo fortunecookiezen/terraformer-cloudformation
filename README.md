@@ -19,7 +19,7 @@ But seriously, as a recovering Enterprise Architect, this is a significant anti-
 * terraform/data.tf (examples of importing existing environment data)
 * terraform/main.tf (creates a security group)
 * terraform/modules
-* terraform/outputs.tf 
+* terraform/outputs.tf
 * terraform/variables.tf
 
 Seriously, I can think of a million things wrong with this idea:
