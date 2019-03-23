@@ -89,6 +89,21 @@ Outputs:
 
   tfstatebucket:
     Description: Terraform State Bucket
-    Value: !GetAtt TerraformStateBucket.DomainName
+    Value: !Ref TerraformStateBucket
     Export: # added to export
-      Name: tfstatebucketurl
+      Name: remoteStateBucketName
+  tfstatebucketarn:
+    Description: Terraform State Bucket Arn
+    Value: !GetAtt TerraformStateBucket.Arn
+    Export:
+      Name: remoteStateBucketArn
+  tflocktable:
+    Description: Terraform Lock Table
+    Value: !Ref TerraformLockTable
+    Export:
+      Name: locktableName
+  tflocktablearn:
+    Description: Terraform Lock Table Arn
+    Value: !GetAtt TerraformLockTable.Arn
+    Export:
+      Name: locktableArn
