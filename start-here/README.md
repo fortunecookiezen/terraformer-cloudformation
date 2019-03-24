@@ -1,5 +1,6 @@
 # start-here
 
-export AWS_REGION
+This is where it all begins. To get started:
 
-`perseus:terraform jamesp$ export AWS_REGION="us-west-2"`
+* export AWS_REGION:
+* `perseus:start-here jamesp$ export AWS_REGION="us-west-2"`
