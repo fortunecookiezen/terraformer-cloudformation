@@ -35,4 +35,4 @@ that makes this inherently insecure. Gain access to that resource, and you own *
 
 * Create an example of exporting and importing data from a local exec or something like that
 * Create an example of running something locally inside the execution environment
-* Create a bootstrap script that will setup the initial environment
+* ~Create a bootstrap script that will setup the initial environment~
