@@ -1,0 +1,14 @@
+[
+    {
+        "ParameterKey": "ASI",
+        "ParameterValue": "fcz"
+    },
+    {
+        "ParameterKey": "Environment",
+        "ParameterValue": "dev"
+    },
+    {
+        "ParameterKey": "Owner",
+        "ParameterValue": "phillips.james@gmail.com"
+    }
+]
