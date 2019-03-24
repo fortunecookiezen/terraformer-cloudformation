@@ -7,8 +7,7 @@
 [ ! -z "$AWS_PROFILE" ] || { echo "AWS_PROFILE is not set"; exit 1; }
 [ ! -z "$AWS_REGION" ] || { echo " AWS_REGION is not set"; exit 1; }
 # check to make sure aws cli is installed
-AWS=`which aws`
-[ ! -z "$AWS" ] || { echo "aws cli must be in your $PATH"; exit 1; }
+[ ! -z `which aws` ] || { echo "aws cli must be in your PATH"; exit 1; }
 
 # execute aws cli to apply the tfstate.yaml file
 $AWS cloudformation create-stack --region $AWS_REGION --stack-name tfstate \
